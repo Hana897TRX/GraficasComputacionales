@@ -212,13 +212,13 @@ void processSpecialKeys(int key, int x, int y) {
 		glutPostRedisplay();
 		break;
 	case GLUT_KEY_RIGHT:
-		if (t > 0)
-			t -= 0.025;
+		if (t > 0.0125)
+			t -= 0.0125;
 		glutPostRedisplay();
 		break;
 	case GLUT_KEY_LEFT:
-		if (t < 1)
-			t += 0.025;
+		if (t < 1 - 0.0125)
+			t += 0.0125;
 		glutPostRedisplay();
 		break;
 	}
