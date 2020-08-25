@@ -9,6 +9,7 @@ float pointSize = 8.0F;
 float lineWidth = 4.0F;
 int color = 0;
 int selectPoint = 0;
+int lineColor = 0;
 
 float t = 0.5;
 
@@ -122,7 +123,7 @@ void display(void) {
 		glColor3f(1.0, 0.0, 0.0);
 	else if(color == 1)
 		glColor3f(0.0, 1.0, 0.0);
-	if (color == 2)
+	else if (color == 2)
 		glColor3f(0.0, 0.0, 1.0);
 
 	glBegin(GL_POINTS);
@@ -144,9 +145,15 @@ void display(void) {
 	glBegin(GL_POINTS);
 		glVertex3fv(midPoint);
 	glEnd();
+
+	if(lineColor == 0)
+		glColor3f(1.0, 0.0, 0.0);
+	else if (lineColor == 1)
+		glColor3f(0.0, 1.0, 0.0);
+	else if (lineColor)
+		glColor3f(0.0, 0.0, 1.0);
 	
 	glLineWidth(lineWidth);
-	glColor3f(1.0, 0.0, 1.0);
 	glBegin(GL_LINES);
 		glVertex3fv(p1);
 		glVertex3fv(p2);
@@ -192,6 +199,16 @@ void keyboard(unsigned char key, int x, int y) {
 		pointSize += 1.0;
 		if (pointSize >= 10.0)
 			pointSize = 9.0;
+		glutPostRedisplay();
+		break;
+	case 'q':
+		if (lineColor != 2)
+			lineColor++;
+		glutPostRedisplay();
+		break;
+	case 'w':
+		if (lineColor != 0)
+			lineColor--;
 		glutPostRedisplay();
 		break;
 	}
