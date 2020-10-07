@@ -176,21 +176,25 @@ void drawColoredCylinderS(float r, float g, float b, float rs, float gs, float b
 	glMaterialfv(GL_FRONT, GL_AMBIENT, diffuse);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 	glMaterialfv(GL_FRONT, GL_SHININESS, &exp);
-	glBegin(GL_TRIANGLE)
 
 
 	for (int rad = 0; rad < slices; rad++)
 		for (int h = 0; h < stacks; h++) {
 			glBegin(GL_QUADS);
+
+			//GlTextCoord();
 			glVertex3f(radius * sin((float)rad* cyAngleInc), radius * cos((float)rad * cyAngleInc),h * cyHeightInc);
 			glNormal3f(radius * sin((float)rad* cyAngleInc), radius * cos((float)rad * cyAngleInc),h * cyHeightInc);
 			
+			//GlTextCoord();
 			glVertex3f(radius * sin((float)rad* cyAngleInc), radius * cos((float)rad * cyAngleInc),(h + 1) * cyHeightInc);
 			glNormal3f(radius * sin((float)rad* cyAngleInc), radius * cos((float)rad * cyAngleInc),(h + 1) * cyHeightInc);
 			
+			//GlTextCoord();
 			glVertex3f(radius * sin((float)(rad + 1) * cyAngleInc), radius * cos((float)(rad + 1) * cyAngleInc),(h + 1) * cyHeightInc);
 			glNormal3f(radius * sin((float)(rad + 1) * cyAngleInc), radius * cos((float)(rad + 1) * cyAngleInc),(h + 1) * cyHeightInc);
 			
+			//GlTextCoord();
 			glVertex3f(radius * sin((float)(rad + 1) * cyAngleInc), radius * cos((float)(rad + 1) * cyAngleInc),h * cyHeightInc);
 			glNormal3f(radius * sin((float)(rad + 1) * cyAngleInc), radius * cos((float)(rad + 1) * cyAngleInc),h * cyHeightInc);
 			glEnd();

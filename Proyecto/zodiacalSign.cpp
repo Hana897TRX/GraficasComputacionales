@@ -382,6 +382,131 @@ void Geminis() {
 	glPopMatrix();
 }
 
+void Acuario() {
+	//Top
+	glPushMatrix();
+		glTranslated(-1.5, 1.0, 0.0);
+		glPushMatrix();
+			glRotated(45, 0.0, 0.0, 1.0);
+			glScaled(1.5, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.8, 0.06, 0.0);
+		glPushMatrix();
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(1.3, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.75, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(45, 0.0, 0.0, 1.0);
+			glScaled(1.3, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.75, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(1.3, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.75, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(45, 0.0, 0.0, 1.0);
+			glScaled(1.3, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.85, -0.1, 0.0);
+		glPushMatrix();
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(1.5, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+	glPopMatrix();
+
+	//Bottom
+	glPushMatrix();
+		glTranslated(-1.5, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(45, 0.0, 0.0, 1.0);
+			glScaled(1.5, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+		
+		glTranslated(0.8, 0.06, 0.0);
+		glPushMatrix();
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(1.3, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.75, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(45, 0.0, 0.0, 1.0);
+			glScaled(1.3, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.75, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(1.3, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.75, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(45, 0.0, 0.0, 1.0);
+			glScaled(1.3, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.85, -0.1, 0.0);
+		glPushMatrix();
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(1.5, 0.25, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+	glPopMatrix();
+}
+
+void Sagitario() {
+	glPushMatrix();
+
+		glPushMatrix();
+			glTranslated(-1.0, -1.0, 0.0);
+			glRotated(45, 0.0, 0.0, 1.0);
+			glScaled(0.4, 2.5, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslated(-0.8, -0.8, 0.0);
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(0.4, 6.0, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.35, 1.5, 0.0);
+		glPushMatrix();
+			glRotated(90, 0.0, 0.0, 1.0);
+			glScaled(0.4, 2.5, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(1.1,-1.1, 0.0);
+		glPushMatrix();
+			glScaled(0.4, 2.5, 0.4);
+			glutSolidCube(1.0);
+		glPopMatrix();
+	glPopMatrix();
+}
+
 void display(void) {
 	//clear the buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -389,6 +514,8 @@ void display(void) {
 	//Geminis();
 	//Tauro();
 	//Aries();
+	//Acuario();
+	//Sagitario();
 	glutSwapBuffers();
 }
 
