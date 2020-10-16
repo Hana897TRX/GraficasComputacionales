@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <GL/gl.h>
 #include <glut.h>
+#include <iostream>
 
 GLfloat vertex[8][3];
 GLfloat normals[8][3];
@@ -11,7 +12,8 @@ GLfloat center[3];
 
 bool toggleNormal = false;
 
-int globalDepth = 1;
+int globalDepth;
+float rotation = 0;
 
 void SetCube(void) {
 
@@ -152,43 +154,61 @@ void init(void)
 
 	// Enable depth testing (for hidden surface removal)
 	glEnable(GL_DEPTH_TEST);
-
+	globalDepth = 1;
 	SetCube();
 }
 
-void subdivide(float *v0, float *v1, float *v2, float *v3, float* n0, float* n1, float* n2, float* n3, int _depth) {
-	//Criteria met?
+void GetNewPoint(float *newV) {
+	float scaled = 1 / sqrt(newV[0] * newV[0] + newV[1] * newV[1] + newV[2] * newV[2]);
+	newV[0] *= scaled;
+	newV[1] *= scaled;
+	newV[2] *= scaled;
+}
 
+void SetMaterials(void) {
+	GLfloat mat_ambient[] = { 0.105882f, 0.058824f, 0.113725f, 1.0f };
+	GLfloat mat_diffuse[] = { 0.427451f, 0.470588f, 0.541176f, 1.0f };
+	GLfloat mat_spec[] = { 0.333333f, 0.333333f, 0.521569f, 1.0f };
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, mat_spec);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec);
+}
+
+void subdivide(float v0[3], float v1[3], float v2[3], float v3[3], float* n0, float* n1, float* n2, float* n3, int _depth) {
 	float v01[3], v12[3], v23[3], v30[3], vc[3];
 	float n01[3], n12[3], n23[3], n30[3], nc[3];
 
 	if (_depth == 0) {
+		SetMaterials();
 		glBegin(GL_QUADS);
+			glNormal3fv(n0);
+			glVertex3fv(v0);
 
-		glNormal3fv(n0);
-		glVertex3fv(v0);
+			glNormal3fv(n1);
+			glVertex3fv(v1);
 
-		glNormal3fv(n1);
-		glVertex3fv(v1);
+			glNormal3fv(n2);
+			glVertex3fv(v2);
 
-		glNormal3fv(n2);
-		glVertex3fv(v2);
-
-		glNormal3fv(n3);
-		glVertex3fv(v3);
-		
+			glNormal3fv(n3);
+			glVertex3fv(v3);
 		glEnd();
 	}
 	else {
 		//Calculate new points
 		//Calculate new Normals
 		for (int i = 0; i < 3; i++) {
-			v01[i] = v0[i] + 0.5 * (v1[i] - v0[0]);
-			v12[i] = v1[i] + 0.5 * (v2[i] - v1[0]);
-			v23[i] = v2[i] + 0.5 * (v3[i] - v2[0]);
-			v30[i] = v3[i] + 0.5 * (v0[i] - v3[0]);
+			//v01[i] = v0[i] + 0.5 * (v1[i] - v0[i]);
+			//v12[i] = v1[i] + 0.5 * (v2[i] - v1[i]);
+			//v23[i] = v2[i] + 0.5 * (v3[i] - v2[i]);
+			//v30[i] = v3[i] + 0.5 * (v0[i] - v3[i]);
 
-			vc[i] = v01[i] + 0.5 * (v23[i] - v01[i]);
+			//vc[i] = v01[i] + 0.5 * (v23[i] - v01[i]);
+			v01[i] = v0[i] + v1[i];
+			v12[i] = v1[i] + v2[i];
+			v23[i] = v2[i] + v3[i];
+			v30[i] = v3[i] + v0[i];
 
 			n01[i] = 0.5 * (n0[i] + n1[i]);
 			n12[i] = 0.5 * (n1[i] + n2[i]);
@@ -197,6 +217,14 @@ void subdivide(float *v0, float *v1, float *v2, float *v3, float* n0, float* n1,
 
 			nc[i] = 0.5 * (n01[i] + n23[i]);
 		}
+		GetNewPoint(v01);
+		GetNewPoint(v12);
+		GetNewPoint(v23);
+		GetNewPoint(v30);
+
+		for (int i = 0; i < 3; i++)
+			vc[i] = v0[i] + v2[i];
+		GetNewPoint(vc);
 
 		//Recursive call
 		subdivide(v0, v01, vc, v30, n0, n01, nc, n30, _depth - 1);
@@ -210,27 +238,12 @@ void display(void)
 {
 	// Clear the buffer 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	//For each polygon
-
-	for (int i = 0; i < 6; i++) {
-
-		subdivide(vertex[faces[i][0]], vertex[faces[i][1]], vertex[faces[i][2]], vertex[faces[i][3]], normals[faces[i][0]], normals[faces[i][1]], normals[faces[i][2]], normals[faces[i][3]], globalDepth);
-		/*glBegin(GL_QUADS);
-		if(toggleNormal)
-			glNormal3fv(normalFace[i]);
-
-		for (int j = 0; j < 4; j++) {
-			if(!toggleNormal)
-				glNormal3fv(normals[faces[i][j]]);
-			glVertex3fv(vertex[faces[i][j]]);
-		}
-		glEnd();*/
-	}
-
 	
-	// Get model - from library
-	//glutSolidTeapot(0.80);
+	glRotatef(rotation, 0.0, 1.0, 0.0);
+	for (int i = 0; i < 6; i++) {
+		subdivide(vertex[faces[i][0]], vertex[faces[i][1]], vertex[faces[i][2]], vertex[faces[i][3]], normals[faces[i][0]], normals[faces[i][1]], normals[faces[i][2]], normals[faces[i][3]], globalDepth);
+	}
 	glFlush();
 }
 
@@ -257,7 +270,6 @@ void reshape(int w, int h)
 void keyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
-		// Use "Esc" key to exit
 	case 27:
 		exit(0);
 		break;
@@ -266,6 +278,20 @@ void keyboard(unsigned char key, int x, int y)
 		break;
 	case 'X':
 		toggleNormal = false;
+		break;
+	case '+':
+		globalDepth++;
+		break;
+	case '-':
+		globalDepth--;
+		if (globalDepth < 0)
+			globalDepth = 0;
+		break;
+	case 'r':
+		rotation+= 0.1F;
+		break;
+	case 'R':
+		rotation-=0.1F;
 		break;
 	}
 }
@@ -286,6 +312,7 @@ int main(int argc, char** argv)
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboard);
+	glutIdleFunc(display);
 
 	// Do main loop
 	glutMainLoop();

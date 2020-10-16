@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <GL/gl.h>
 #include <glut.h>
+#include <math.h>
 
 float rotation = 0.0;
 
@@ -42,7 +43,7 @@ void custominitialize(void) {
 	glEnable(GL_DEPTH_TEST);
 }
 
-void Aries() {
+void Aries(void) {
 	glDisable(GL_LIGHTING);
 	glPushMatrix();
 		glTranslated(1.0, 0.0, 0.0);
@@ -153,7 +154,7 @@ void Aries() {
 	glEnable(GL_LIGHTING);
 }
 
-void Tauro() {
+void Tauro(void) {
 	//Center
 	glPushMatrix();
 		glPushMatrix();
@@ -269,7 +270,7 @@ void Tauro() {
 	glPopMatrix();
 }
 
-void Geminis() {
+void Geminis(void) {
 	glPushMatrix();
 		glTranslated(0.0, 1.25, 0.0);
 		//CENTER - TOP
@@ -382,7 +383,7 @@ void Geminis() {
 	glPopMatrix();
 }
 
-void Acuario() {
+void Acuario(void) {
 	//Top
 	glPushMatrix();
 		glTranslated(-1.5, 1.0, 0.0);
@@ -475,7 +476,7 @@ void Acuario() {
 	glPopMatrix();
 }
 
-void Sagitario() {
+void Sagitario(void) {
 	glPushMatrix();
 
 		glPushMatrix();
@@ -507,6 +508,360 @@ void Sagitario() {
 	glPopMatrix();
 }
 
+void Leo(void) {
+	glPushMatrix();
+		glPushMatrix();
+		glTranslated(0.1, 0.0, 0.5);
+			glScaled(0.2, 0.2, 0.1);
+			glutSolidTorus(0.25, 2.125, 45, 45);
+		glPopMatrix();
+
+		glTranslated(0.4, 0.50, 0.0);
+		glPushMatrix();
+			glRotated(20, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.75, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(-0.125, 0.4, 0.0);
+		glPushMatrix();
+			glRotated(0, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.0, 0.125, 0.0);
+		glPushMatrix();
+			glRotated(-15, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.05, 0.125, 0.0);
+		glPushMatrix();
+			glRotated(-25, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.05, 0.1, 0.0);
+		glPushMatrix();
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.05, 0.05, 0.0);
+		glPushMatrix();
+			glRotated(-55, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.1, 0.05, 0.0);
+		glPushMatrix();
+			glRotated(-75, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.1, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(90, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.1, 0.0, 0.0);
+		glPushMatrix();
+			glRotated(75, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.1, -0.05, 0.0);
+		glPushMatrix();
+			glRotated(65, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.05, -0.05, 0.0);
+		glPushMatrix();
+			glRotated(45, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.1, -0.1, 0.0);
+		glPushMatrix();
+			glRotated(25, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.05, -0.15, 0.0);
+		glPushMatrix();
+			glRotated(5, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(-0.0, -0.15, 0.0);
+		glPushMatrix();
+			glRotated(-5, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(-0.1, -0.65, 0.0);
+		glPushMatrix();
+			glRotated(-10, 0.0, 0.0, 1.0);
+			glScaled(0.125, 1.25, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(-0.05, -0.65, 0.0);
+		glPushMatrix();
+			glRotated(25, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		glTranslated(0.05, -0.1, 0.0);
+		glPushMatrix();
+			glRotated(65, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		
+		glTranslated(0.1, -0.0, 0.0);
+		glPushMatrix();
+			glRotated(85, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+		
+		glTranslated(0.15, 0.05, 0.0);
+		glPushMatrix();
+			glRotated(-45, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+		
+		glTranslated(0.05, 0.1, 0.0);
+		glPushMatrix();
+			glRotated(-15, 0.0, 0.0, 1.0);
+			glScaled(0.125, 0.2, 0.125);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+	glPopMatrix();
+}
+
+void Cancer(void) {
+	glPushMatrix();
+		//Torus
+		glPushMatrix();
+			glTranslated(-1.0, 1.5, 0.0);
+			glPushMatrix();
+				glTranslated(0.1, -0.05, 0.5);
+				glScaled(0.2, 0.2, 0.1);
+				glutSolidTorus(0.5, 2.125, 45, 45);
+			glPopMatrix();
+
+			glTranslated(0.0, 0.4, 0.0);
+			glPushMatrix();
+				glRotated(-75, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.35, 0.1, 0.0);
+			glPushMatrix();
+				glRotated(-80, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.45, 0.05, 0.0);
+			glPushMatrix();
+				glRotated(90, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.45, -0.01, 0.0);
+			glPushMatrix();
+				glRotated(85, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.45, -0.07, 0.0);
+			glPushMatrix();
+				glRotated(75, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.40, -0.15, 0.0);
+			glPushMatrix();
+				glRotated(60, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+		glPopMatrix();
+
+		glPushMatrix();
+			glRotated(180, 1.0, 0.0, 0.0);
+			glRotated(180, 0.0, 1.0, 0.0);
+			glTranslated(-0.8, -0.8, 0.0);
+			glPushMatrix();
+				glTranslated(0.1, -0.05, -0.5);
+				glScaled(0.2, 0.2, 0.1);
+				glutSolidTorus(0.5, 2.125, 45, 45);
+			glPopMatrix();
+
+			glTranslated(0.0, 0.4, 0.0);
+			glPushMatrix();
+				glRotated(-75, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.35, 0.1, 0.0);
+			glPushMatrix();
+				glRotated(-80, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.45, 0.05, 0.0);
+			glPushMatrix();
+				glRotated(90, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.45, -0.01, 0.0);
+			glPushMatrix();
+				glRotated(85, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.45, -0.07, 0.0);
+			glPushMatrix();
+				glRotated(75, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.40, -0.15, 0.0);
+			glPushMatrix();
+				glRotated(60, 0.0, 0.0, 1.0);
+				glScaled(0.15, 0.5, 0.1);
+				glutSolidCube(1.0);
+			glPopMatrix();
+		glPopMatrix();
+	glPopMatrix();
+}
+
+void Piscis(void) {
+	glPushMatrix();
+		glTranslated(0.0, 1.25, 0.0);
+		//CENTER - TOP
+		glPushMatrix();
+		glScaled(1.0, 0.2, 0.5);
+		glutSolidCube(1.0);
+		glPopMatrix();
+
+		//RIGHT - TOP
+		glPushMatrix();
+			glTranslated(0.7, 0.1, 0.0);
+
+			glPushMatrix();
+				glRotated(20, 0.0, 0.0, 1.0);
+				glScaled(0.5, 0.2, 0.5);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.35, 0.25, 0.0);
+
+			glPushMatrix();
+				glRotated(50, 0.0, 0.0, 1.0);
+				glScaled(0.5, 0.2, 0.5);
+				glutSolidCube(1.0);
+				glPopMatrix();
+		glPopMatrix();
+
+		//LEFT - TOP
+		glPushMatrix();
+			glTranslated(-0.7, 0.1, 0.0);
+
+			glPushMatrix();
+				glRotated(-20, 0.0, 0.0, 1.0);
+				glScaled(0.5, 0.2, 0.5);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(-0.35, 0.25, 0.0);
+
+			glPushMatrix();
+				glRotated(-50, 0.0, 0.0, 1.0);
+				glScaled(0.5, 0.2, 0.5);
+				glutSolidCube(1.0);
+				glPopMatrix();
+		glPopMatrix();
+
+		glTranslated(0.0, -2.0, 0.0);
+		////CENTER - BOTTOM
+		glPushMatrix();
+			glScaled(1.0, 0.2, 0.5);
+			glutSolidCube(1.0);
+		glPopMatrix();
+
+		//LEFT - BOTTOM
+		glPushMatrix();
+			glTranslated(-0.7, -0.1, 0.0);
+
+			glPushMatrix();
+				glRotated(20, 0.0, 0.0, 1.0);
+				glScaled(0.5, 0.2, 0.5);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(-0.35, -0.25, 0.0);
+			glPushMatrix();
+				glRotated(50, 0.0, 0.0, 1.0);
+				glScaled(0.5, 0.2, 0.5);
+				glutSolidCube(1.0);
+				glPopMatrix();
+		glPopMatrix();
+
+		//RIGHT - BOTTOM
+		glPushMatrix();
+			glTranslated(0.7, -0.1, 0.0);
+
+			glPushMatrix();
+				glRotated(-20, 0.0, 0.0, 1.0);
+				glScaled(0.5, 0.2, 0.5);
+				glutSolidCube(1.0);
+			glPopMatrix();
+
+			glTranslated(0.35, -0.25, 0.0);
+			glPushMatrix();
+				glRotated(-50, 0.0, 0.0, 1.0);
+				glScaled(0.5, 0.2, 0.5);
+				glutSolidCube(1.0);
+				glPopMatrix();
+		glPopMatrix();
+
+	glPopMatrix();
+}
+
 void display(void) {
 	//clear the buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -516,6 +871,9 @@ void display(void) {
 	//Aries();
 	//Acuario();
 	//Sagitario();
+	//Leo();
+	//Cancer();
+	Piscis();
 	glutSwapBuffers();
 }
 
